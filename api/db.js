@@ -1,6 +1,6 @@
 // api/db.js
-const mongoose = require('mongoose');
-const config = require('./config'); // Import the config
+import mongoose from 'mongoose';
+import config from './config'; 
 
 const MONGODB_URI = config.MONGODB_URI; // Get the URI from config
 
@@ -21,4 +21,4 @@ async function connectToDatabase() {
   return connection;
 }
 
-module.exports = connectToDatabase;
+export default connectToDatabase;

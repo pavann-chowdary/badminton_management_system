@@ -1,7 +1,8 @@
 // api/routes/users.js
-const express = require('express');
-const connectToDatabase = require('../db');
-const User = require('../models/user');
+
+import connectToDatabase from '../db';
+import express from 'express';
+import User from '../models/user';
 
 const router = express.Router();
 
@@ -27,4 +28,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
