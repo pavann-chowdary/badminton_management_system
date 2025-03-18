@@ -6,6 +6,7 @@ import clientid from './environmentalVariables/googleClientId'
 import axios from 'axios'
 import { Routes,Route } from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
+import AppRoutes from './routes'
 
 function App() { 
   console.log(window.location.origin)
