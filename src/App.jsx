@@ -18,6 +18,7 @@ function App() {
     try {
       setIsLoggedIn(true);
       navigate('/welcome')
+      console.log('Navigated to profile')
       const response = await axios.post('/users', {
           name: decoded.name,
           email: decoded.email,
