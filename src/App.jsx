@@ -39,12 +39,7 @@ function App() {
         onSuccess={handleGoogleLoginSuccess}
         onError={handleGoogleLoginError}
       />
-      {userName && (
-        <div>
-          <h2>Welcome, {userName}!</h2>
-          <p>Email: {userEmail}</p>
-        </div>
-    )}
+      
     </GoogleOAuthProvider>
         
     </>
