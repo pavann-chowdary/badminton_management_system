@@ -4,6 +4,7 @@ import {jwtDecode} from 'jwt-decode'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import clientid from './environmentalVariables/googleClientId'
 import axios from 'axios'
+import { Routes,Route } from 'react-router-dom'
 
 function App() { 
   console.log(window.location.origin)
