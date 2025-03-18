@@ -7,13 +7,9 @@ const Profile = () => {
     
   return (
     <div>
-        Profile
-        <h1>
-            {name}
-        </h1>
-        <h1>
-            {email}
-        </h1>
+        <h5>
+            welcome {name}
+        </h5>
     </div>
   )
 }
