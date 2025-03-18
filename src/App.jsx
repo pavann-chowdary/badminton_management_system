@@ -18,13 +18,15 @@ function App() {
     const decoded = jwtDecode(credentialResponse.credential);
     try {
       setIsLoggedIn(true);
-      navigate('/welcome')
+      
       console.log('Navigated to profile')
       const response = await axios.post('/users', {
           name: decoded.name,
           email: decoded.email,
       });
-
+      const name=decoded.name
+      const email=decoded.email
+      navigate('/welcome',{state:{name,email}})
       console.log('User data saved to MongoDB', response.data);
   } catch (error) {
       console.error('Failed to save user data', error);
