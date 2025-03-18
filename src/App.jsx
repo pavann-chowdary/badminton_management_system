@@ -1,0 +1,54 @@
+import React from 'react'
+import {useState} from 'react'
+import {jwtDecode} from 'jwt-decode'
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+import clientid from './environmentalVariables/googleClientId'
+import axios from 'axios'
+
+function App() { 
+  console.log(window.location.origin)
+  
+  
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    console.error('Google login Successful');
+    const decoded = jwtDecode(credentialResponse.credential);
+    try {
+      const response = await axios.post('/users', {
+          name: decoded.name,
+          email: decoded.email,
+      });
+
+      console.log('User data saved to MongoDB', response.data);
+  } catch (error) {
+      console.error('Failed to save user data', error);
+  }
+
+  };
+  
+  const handleGoogleLoginError = () => {
+    console.error('Google login failed');
+  };
+
+
+  return (
+    <>
+    <GoogleOAuthProvider clientId={clientid}>
+      <h1>hi,hello</h1>
+      
+      <GoogleLogin
+        onSuccess={handleGoogleLoginSuccess}
+        onError={handleGoogleLoginError}
+      />
+      {userName && (
+        <div>
+          <h2>Welcome, {userName}!</h2>
+          <p>Email: {userEmail}</p>
+        </div>
+    )}
+    </GoogleOAuthProvider>
+        
+    </>
+  )
+}
+
+export default App
