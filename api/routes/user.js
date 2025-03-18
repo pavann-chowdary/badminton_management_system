@@ -28,4 +28,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/test', (req, res) => {
+    res.json({ message: 'Test endpoint works' });
+});
+
 export default router;

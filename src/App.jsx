@@ -29,6 +29,16 @@ function App() {
     console.error('Google login failed');
   };
 
+  const handleTestEndpoint = async () => {
+    try {
+        const response = await axios.get('/users/test');
+        console.log('Test endpoint response:', response.data);
+        alert(response.data.message); // Show the response
+    } catch (error) {
+        console.error('Error calling test endpoint:', error);
+        alert('Test endpoint failed');
+    }
+};
 
   return (
     <>
@@ -39,7 +49,7 @@ function App() {
         onSuccess={handleGoogleLoginSuccess}
         onError={handleGoogleLoginError}
       />
-      
+      <button onClick={handleTestEndpoint}>Test Endpoint</button>
     </GoogleOAuthProvider>
         
     </>
