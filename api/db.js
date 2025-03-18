@@ -1,21 +1,34 @@
-// api/db.js
-import mongoose from 'mongoose';
-import config from './config.js'; 
 
-const MONGODB_URI = config.MONGODB_URI; // Get the URI from config
+import mongoose from 'mongoose';
+import config from './config.js';
+
+const MONGODB_URI = config.MONGODB_URI;
 
 let cachedDb = null;
 
 async function connectToDatabase() {
-  if (cachedDb) {
-    return cachedDb;
-  }
+    if (cachedDb) {
+        console.log('Using cached database connection');
+        return cachedDb;
+    }
 
-  const connection = await mongoose.connect(MONGODB_URI);
+    console.log('Attempting to connect to MongoDB with URI:', MONGODB_URI); // Log the URI
 
-  cachedDb = connection;
-  console.log('MongoDB Connected');
-  return connection;
+    const startTime = Date.now(); // Log start time
+
+    try {
+        const connection = await mongoose.connect(MONGODB_URI);
+
+        const endTime = Date.now(); // Log end time
+        console.log('MongoDB connected successfully in', (endTime - startTime), 'ms');
+
+        cachedDb = connection;
+        return connection;
+    } catch (error) {
+        const endTime = Date.now(); // Log end time
+        console.error('MongoDB connection error after', (endTime - startTime), 'ms:', error);
+        throw error; // Rethrow the error
+    }
 }
 
 export default connectToDatabase;
