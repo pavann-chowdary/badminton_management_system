@@ -15,6 +15,10 @@
     ],
     "routes": [
       {
+        "src": "/users",
+        "dest": "/api/index.js"
+      },
+      {
         "src": "/users/(.*)",
         "dest": "api/index.js"
       },
