@@ -5,17 +5,19 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import clientid from './environmentalVariables/googleClientId'
 import axios from 'axios'
 import { Routes,Route } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 function App() { 
   console.log(window.location.origin)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const navigate = useNavigate(); 
   
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     console.error('Google login Successful');
     const decoded = jwtDecode(credentialResponse.credential);
     try {
       setIsLoggedIn(true);
+      navigate('/welcome')
       const response = await axios.post('/users', {
           name: decoded.name,
           email: decoded.email,
