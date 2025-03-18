@@ -1,6 +1,6 @@
 // api/db.js
 import mongoose from 'mongoose';
-import config from './config'; 
+import config from './config.js'; 
 
 const MONGODB_URI = config.MONGODB_URI; // Get the URI from config
 
