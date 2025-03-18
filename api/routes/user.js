@@ -9,9 +9,9 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     await connectToDatabase();
-    // const { name, email } = req.body;
-    // const newUser = new User({ name, email });
-    // await newUser.save();
+    const { name, email } = req.body;
+    const newUser = new User({ name, email });
+    await newUser.save();
     res.status(201).json({ message: 'User saved successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
